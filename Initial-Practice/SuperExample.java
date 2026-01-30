@@ -1,0 +1,18 @@
+class Parent{
+    void display(){
+        System.out.println("Paret Class Method");
+    }
+}
+class Child extends Parent{
+    void display(){
+        super.display();
+        System.out.println("Child Class Method");
+    }
+}
+
+public class SuperExample {
+    public static void main(String[] args) {
+        Child c=new Child();
+        c.display();
+    }
+}
