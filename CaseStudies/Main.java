@@ -1,0 +1,50 @@
+class Account {
+    protected double balance;
+
+    public Account(double balance) {
+        this.balance = balance;
+    }
+
+    public double calculateInterest() {
+        return balance * 0.02;
+    }
+}
+
+class SavingsAccount extends Account {
+    public SavingsAccount(double balance) {
+        super(balance);
+    }
+
+    @Override
+    public double calculateInterest() {
+        double interest = balance * 0.04;
+        if (balance > 50000) {
+            interest += 500;
+        }
+        return interest;
+    }
+}
+
+class FixedDeposit extends SavingsAccount {
+    public FixedDeposit(double balance) {
+        super(balance);
+    }
+
+    @Override
+    public double calculateInterest() {
+        return super.calculateInterest() + (balance * 0.02);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Account tc1 = new SavingsAccount(10000);
+        System.out.println("TC 1 Output: " + tc1.calculateInterest());
+
+        Account tc2 = new SavingsAccount(60000);
+        System.out.println("TC 2 Output: " + tc2.calculateInterest());
+
+        Account tc3 = new FixedDeposit(60000);
+        System.out.println("TC 3 Output: " + tc3.calculateInterest());
+    }
+}
